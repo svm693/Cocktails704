@@ -22,6 +22,7 @@
       --muted2: rgba(255,255,255,0.55);
       --accent: rgba(255, 196, 98, 0.95); /* warm gold */
       --accent2: rgba(163, 126, 255, 0.65); /* soft violet */
+      --danger: rgba(255, 120, 120, 0.85);
     }
 
     *{ box-sizing: border-box; }
@@ -48,8 +49,8 @@
 
     header{
       text-align:center;
-      padding: 18px 12px 28px;
-      margin-bottom: 26px;
+      padding: 18px 12px 18px;
+      margin-bottom: 18px;
     }
 
     .title{
@@ -69,7 +70,7 @@
     }
 
     .chips{
-      margin-top: 18px;
+      margin-top: 14px;
       display:flex;
       gap:10px;
       justify-content:center;
@@ -85,328 +86,81 @@
       backdrop-filter: blur(8px);
     }
 
-    .grid{
-      display:grid;
-      gap: 18px;
-    }
-    @media (min-width: 880px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-      .span2{ grid-column: 1 / -1; }
+    /* Search */
+    .searchbar{
+      max-width: 720px;
+      margin: 18px auto 0;
+      display: grid;
+      gap: 10px;
     }
 
-    section.card{
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
-      border: 1px solid var(--stroke);
-      border-radius: 18px;
-      padding: 18px 18px 14px;
+    .searchrow{
+      display:flex;
+      gap:10px;
+      align-items: center;
+      justify-content:center;
+      flex-wrap: wrap;
+    }
+
+    .searchwrap{
+      flex: 1 1 420px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
       backdrop-filter: blur(10px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
     }
 
-    .section-head{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap: 14px;
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .section-title{
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 700;
-      font-size: 1.55rem;
-      margin:0;
-    }
-    .section-note{
-      color: var(--muted2);
-      font-size: 0.85rem;
-      margin:0;
-      white-space:nowrap;
-    }
-
-    .drink{
-      padding: 12px 0;
-      border-bottom: 1px dashed rgba(255,255,255,0.12);
-    }
-    .drink:last-child{ border-bottom:none; }
-
-    .drink-name{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      margin:0 0 6px 0;
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: rgba(255,255,255,0.95);
-    }
-
-    .tag{
-      font-family: Inter, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: rgba(0,0,0,0.85);
-      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.8));
-      padding: 4px 10px;
-      border-radius: 999px;
-      box-shadow: 0 8px 20px rgba(255,196,98,0.10);
+    .searchicon{
+      width: 18px; height: 18px;
+      opacity: 0.85;
       flex: 0 0 auto;
     }
 
-    ul{
-      margin: 0;
-      padding-left: 18px;
+    #search{
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 500;
+    }
+    #search::placeholder{ color: rgba(255,255,255,0.45); }
+
+    .btn{
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
       color: var(--muted);
-    }
-    li{ margin: 4px 0; }
-
-    .note{
-      color: var(--muted2);
-      font-size: 0.92rem;
-      margin: 6px 0 0 0;
-    }
-
-    .columns{
-      display:grid;
-      gap: 14px;
-    }
-    @media (min-width: 640px){
-      .columns{ grid-template-columns: 1fr 1fr; }
-    }
-
-    .listblock{
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
+      padding: 10px 12px;
       border-radius: 14px;
-      padding: 14px 14px 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      backdrop-filter: blur(10px);
     }
-    .listblock h4{
-      margin:0 0 8px 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.15rem;
-      color: rgba(255,255,255,0.95);
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.20);
     }
-    .listblock ul{ margin:0; }
 
-    footer{
-      text-align:center;
-      margin-top: 22px;
+    .searchhelp{
       color: var(--muted2);
-      font-size: 0.85rem;
+      font-size: 0.86rem;
+      margin: 0;
     }
 
-    .divider{
-      height: 1px;
-      margin: 18px 0 6px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
-    }
-  </style>
-</head>
-
-<body>
-  <div class="wrap">
-    <header>
-      <h1 class="title">SavCam Cocktails — NYE 2025<span style="color:var(--accent)">*</span></h1>
-      <p class="subtitle">
-        All measurements are posted in ounces (oz) for <strong>1 drink</strong> — scale accordingly for multiple drinks.
-      </p>
-      <div class="chips">
-        <div class="chip">Stirred • Shaken • Pour n’ Go</div>
-        <div class="chip">Keep it cold • Serve with style</div>
-        <div class="chip">Tonight’s menu</div>
-      </div>
-    </header>
-
-    <div class="grid">
-
-      <!-- Welcome Drink -->
-      <section class="card">
-        <div class="section-head">
-          <h2 class="section-title">Welcome Drink</h2>
-          <p class="section-note">Start here</p>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name">
-            <span>Piña Colada Dominicana</span>
-            <span class="tag">House</span>
-          </div>
-          <p class="note">Al ojo porciento y queda bien.</p>
-        </div>
-      </section>
-
-      <!-- Wake up -->
-      <section class="card">
-        <div class="section-head">
-          <h2 class="section-title">Wake up!!</h2>
-          <p class="section-note">Coffee forward</p>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Espresso Martini — Classic</span></div>
-          <ul>
-            <li>2 oz Vodka</li>
-            <li>1/2 oz Coffee liqueur</li>
-            <li>1 oz Espresso</li>
-            <li>1/2 oz Simple syrup</li>
-            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Espresso Martini — Decadent</span></div>
-          <ul>
-            <li>1.5 oz Baileys Chocolate Liqueur</li>
-            <li>0.75 oz Vodka</li>
-            <li>1 oz Fresh Espresso</li>
-            <li>0.25 oz Simple Syrup</li>
-            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Carajillo</span></div>
-          <ul>
-            <li>1.5 oz Licor 43</li>
-            <li>1.5 oz Fresh Espresso</li>
-            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Fancy a drink -->
-      <section class="card span2">
-        <div class="section-head">
-          <h2 class="section-title">Fancy a drink?</h2>
-          <p class="section-note">Built in glass</p>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name">
-            <span>Tu Cariñito</span>
-            <span class="tag">Signature</span>
-          </div>
-          <ul>
-            <li>Leyenda, Ron Añejo, Pineapple, Clarified Milk</li>
-            <li>Serve cold over ice</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Negroni</span></div>
-          <ul>
-            <li>1 oz Gin</li>
-            <li>1 oz Campari</li>
-            <li>1 oz Sweet Vermouth</li>
-            <li>Orange slice</li>
-            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Paloma</span></div>
-          <ul>
-            <li>2 oz Tequila blanco or mezcal</li>
-            <li>1/2 oz Lime juice</li>
-            <li>4 oz Grapefruit soda</li>
-            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Spanish Gin Tonic</span></div>
-          <ul>
-            <li>2 oz Gin</li>
-            <li>4 oz Tonic water</li>
-            <li>Lemon wheel, thyme and juniper berries for garnish</li>
-            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Pour n' Go -->
-      <section class="card span2">
-        <div class="section-head">
-          <h2 class="section-title">Pour n’ Go</h2>
-          <p class="section-note">No mixing required</p>
-        </div>
-
-        <div class="columns">
-          <div class="listblock">
-            <h4>Whisky</h4>
-            <ul>
-              <li>Toki — Suntory Whisky (Japanese)</li>
-              <li>Old Forester — Bourbon Whisky</li>
-              <li>Jack Daniels Tennessee Honey (sold out)</li>
-            </ul>
-          </div>
-
-          <div class="listblock">
-            <h4>Gin</h4>
-            <ul>
-              <li>Roku Gin — Japanese</li>
-            </ul>
-
-            <div class="divider"></div>
-
-            <h4>Ron</h4>
-            <ul>
-              <li>Diamond Reserve — Spiced Rum</li>
-              <li>Barceló Gran Añejo Dark</li>
-              <li>Barceló Imperial Onyx</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Shaky-Shaky -->
-      <section class="card span2">
-        <div class="section-head">
-          <h2 class="section-title">Shaky-Shaky!!</h2>
-          <p class="section-note">Shaken</p>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Peruvian Pisco Sour</span></div>
-          <ul>
-            <li>2 oz Pisco</li>
-            <li>1/2 oz Lemon juice</li>
-            <li>1/2 oz Lime juice</li>
-            <li>3/4 oz Simple syrup</li>
-            <li>1 Egg white</li>
-            <li>Add ingredients in a cocktail mixer and stir for 15–20 seconds without ice, then add ice and shake for 15–20 seconds, finally double-strain and serve</li>
-            <li>3 drops Angostura bitters for the finishing touch</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>Piña Colada Dominicana</span></div>
-          <ul>
-            <li>1 oz Malibu</li>
-            <li>1.5 oz Pineapple juice</li>
-            <li>1/2 oz Coconut cream</li>
-          </ul>
-        </div>
-
-        <div class="drink">
-          <div class="drink-name"><span>El George</span></div>
-          <ul>
-            <li>2 oz Scotch</li>
-            <li>3/4 oz Sweet vermouth</li>
-            <li>1/2 oz Benedictine</li>
-            <li>Lemon peel (yellow)</li>
-          </ul>
-        </div>
-      </section>
-
-    </div>
-
-    <footer>
-      <p>Made with ♥ on GitLab Pages — cheers 🥂</p>
-    </footer>
-  </div>
-</body>
-</html>
+    .no-results{
+      display:none;
+      margin: 12px auto 0;
+      max-width: 720px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      back
