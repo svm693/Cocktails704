@@ -2,27 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SavCam Cocktails - NYE 2025</title>
 
-  <!-- Fancy fonts -->
+  <!-- Fancy fonts (safe to fail; page still renders) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg0:#07060a;
       --bg1:#0d0b14;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.07);
       --stroke: rgba(255,255,255,0.14);
-      --text: rgba(255,255,255,0.90);
+      --text: rgba(255,255,255,0.92);
       --muted: rgba(255,255,255,0.70);
       --muted2: rgba(255,255,255,0.55);
-      --accent: rgba(255, 196, 98, 0.95); /* warm gold */
-      --accent2: rgba(163, 126, 255, 0.65); /* soft violet */
-      --danger: rgba(255, 120, 120, 0.85);
+      --accent: rgba(255, 196, 98, 0.95);
     }
 
     *{ box-sizing: border-box; }
@@ -32,64 +29,42 @@
       color: var(--text);
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.55;
-
-      /* Fancy lounge background */
       background:
-        radial-gradient(1100px 700px at 20% 10%, rgba(255,196,98,0.10), transparent 60%),
-        radial-gradient(900px 600px at 80% 20%, rgba(163,126,255,0.10), transparent 55%),
-        radial-gradient(900px 700px at 60% 90%, rgba(76, 201, 240, 0.06), transparent 60%),
+        radial-gradient(900px 600px at 20% 10%, rgba(255,196,98,0.10), transparent 60%),
+        radial-gradient(850px 600px at 80% 20%, rgba(163,126,255,0.10), transparent 55%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
 
     .wrap{
       max-width: 980px;
       margin: 0 auto;
-      padding: 48px 18px 72px;
+      padding: 22px 14px 60px;
     }
 
     header{
       text-align:center;
-      padding: 18px 12px 18px;
-      margin-bottom: 18px;
+      padding: 14px 8px 10px;
     }
 
     .title{
       font-family: "Cormorant Garamond", serif;
-      letter-spacing: 0.02em;
       font-weight: 700;
-      font-size: clamp(2.1rem, 5vw, 3.4rem);
-      margin: 0 0 8px 0;
+      letter-spacing: 0.02em;
+      font-size: clamp(2.0rem, 7vw, 3.3rem);
+      margin: 0 0 6px 0;
     }
 
     .subtitle{
       margin: 0 auto;
-      max-width: 720px;
+      max-width: 760px;
       color: var(--muted);
-      font-weight: 400;
       font-size: 0.98rem;
-    }
-
-    .chips{
-      margin-top: 14px;
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .chip{
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 7px 12px;
-      font-size: 0.85rem;
-      backdrop-filter: blur(8px);
     }
 
     /* Search */
     .searchbar{
-      max-width: 720px;
-      margin: 18px auto 0;
+      margin: 14px auto 0;
+      max-width: 780px;
       display: grid;
       gap: 10px;
     }
@@ -97,22 +72,22 @@
     .searchrow{
       display:flex;
       gap:10px;
-      align-items: center;
+      align-items: stretch;
       justify-content:center;
       flex-wrap: wrap;
     }
 
     .searchwrap{
-      flex: 1 1 420px;
+      flex: 1 1 320px;
+      min-width: 240px;
       display:flex;
       align-items:center;
       gap:10px;
-      padding: 10px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.28);
     }
 
     .searchicon{
@@ -127,40 +102,436 @@
       outline: none;
       background: transparent;
       color: var(--text);
-      font-size: 0.98rem;
+      font-size: 1rem;
       font-weight: 500;
     }
     #search::placeholder{ color: rgba(255,255,255,0.45); }
 
     .btn{
-      border: 1px solid rgba(255,255,255,0.14);
+      flex: 0 0 auto;
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,0.06);
-      color: var(--muted);
-      padding: 10px 12px;
+      color: rgba(255,255,255,0.78);
+      padding: 12px 14px;
       border-radius: 14px;
       cursor: pointer;
-      font-weight: 600;
-      font-size: 0.92rem;
-      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
-      backdrop-filter: blur(10px);
+      font-weight: 650;
+      font-size: 0.95rem;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.22);
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.20);
-    }
+    .btn:active{ transform: translateY(1px); }
 
     .searchhelp{
+      margin:0;
       color: var(--muted2);
-      font-size: 0.86rem;
-      margin: 0;
+      font-size: 0.88rem;
     }
 
     .no-results{
       display:none;
-      margin: 12px auto 0;
-      max-width: 720px;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.14);
-      back
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.78);
+      text-align:left;
+    }
+
+    /* Layout */
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px){
+      .grid{ grid-template-columns: 1fr 1fr; gap: 18px; }
+      .span2{ grid-column: 1 / -1; }
+    }
+
+    section.card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 18px;
+      padding: 16px 16px 12px;
+      box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+    }
+
+    .section-head{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .section-title{
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin:0;
+    }
+    .section-note{
+      color: var(--muted2);
+      font-size: 0.86rem;
+      margin:0;
+      white-space:nowrap;
+    }
+
+    .drink{
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.12);
+    }
+    .drink:last-child{ border-bottom:none; }
+
+    .drink-name{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 6px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .tag{
+      font-family: Inter, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: rgba(0,0,0,0.86);
+      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.85));
+      padding: 4px 10px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 4px 0; }
+
+    .note{
+      color: var(--muted2);
+      font-size: 0.95rem;
+      margin: 6px 0 0 0;
+    }
+
+    .columns{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 680px){
+      .columns{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .listblock{
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+    }
+    .listblock h4{
+      margin:0 0 8px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.18rem;
+      color: rgba(255,255,255,0.95);
+    }
+    .divider{
+      height: 1px;
+      margin: 16px 0 10px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+    }
+
+    .hidden{ display:none !important; }
+
+    footer{
+      text-align:center;
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 0.88rem;
+    }
+
+    noscript{
+      display:block;
+      max-width: 780px;
+      margin: 10px auto 0;
+      padding: 12px 14px;
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.78);
+      text-align:left;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="title">SavCam Cocktails — NYE 2025<span style="color:var(--accent)">*</span></h1>
+      <p class="subtitle">
+        All measurements are posted in ounces (oz) for <strong>1 drink</strong> — scale accordingly for multiple drinks.
+      </p>
+
+      <div class="searchbar">
+        <div class="searchrow">
+          <div class="searchwrap">
+            <svg class="searchicon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="rgba(255,255,255,0.75)" stroke-width="2"/>
+              <path d="M16.5 16.5 21 21" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input id="search" type="search" placeholder="Search drinks or ingredients (e.g., gin, espresso, pineapple)..." autocomplete="off" />
+          </div>
+          <button class="btn" id="clearBtn" type="button">Clear</button>
+        </div>
+        <p class="searchhelp">Search matches drink names + ingredients + instructions. Sections with no matches will collapse.</p>
+        <div class="no-results" id="noResults">No matches. Try “rum”, “vermouth”, “Licor 43”, “Malibu”.</div>
+
+        <noscript>
+          Your browser has JavaScript disabled. The menu will still display, but search won’t work.
+        </noscript>
+      </div>
+    </header>
+
+    <div class="grid" id="menuGrid">
+
+      <!-- Welcome Drink -->
+      <section class="card menu-section">
+        <div class="section-head">
+          <h2 class="section-title">Welcome Drink</h2>
+          <p class="section-note">Start here</p>
+        </div>
+
+        <div class="drink menu-item" data-search="Pina Colada Dominicana Piña Colada Dominicana welcome drink al ojo porciento">
+          <div class="drink-name">
+            <span>Piña Colada Dominicana</span>
+            <span class="tag">House</span>
+          </div>
+          <p class="note">Al ojo porciento y queda bien.</p>
+        </div>
+      </section>
+
+      <!-- Wake up -->
+      <section class="card menu-section">
+        <div class="section-head">
+          <h2 class="section-title">Wake up!!</h2>
+          <p class="section-note">Coffee forward</p>
+        </div>
+
+        <div class="drink menu-item" data-search="Espresso Martini Classic Vodka Coffee liqueur Espresso Simple syrup stir double-strain">
+          <div class="drink-name"><span>Espresso Martini — Classic</span></div>
+          <ul>
+            <li>2 oz Vodka</li>
+            <li>1/2 oz Coffee liqueur</li>
+            <li>1 oz Espresso</li>
+            <li>1/2 oz Simple syrup</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Espresso Martini Decadent Baileys Chocolate Liqueur Vodka Fresh Espresso Simple Syrup stir double-strain">
+          <div class="drink-name"><span>Espresso Martini — Decadent</span></div>
+          <ul>
+            <li>1.5 oz Baileys Chocolate Liqueur</li>
+            <li>0.75 oz Vodka</li>
+            <li>1 oz Fresh Espresso</li>
+            <li>0.25 oz Simple Syrup</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Carajillo Licor 43 Fresh Espresso stir double-strain">
+          <div class="drink-name"><span>Carajillo</span></div>
+          <ul>
+            <li>1.5 oz Licor 43</li>
+            <li>1.5 oz Fresh Espresso</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Fancy a drink -->
+      <section class="card span2 menu-section">
+        <div class="section-head">
+          <h2 class="section-title">Fancy a drink?</h2>
+          <p class="section-note">Built in glass</p>
+        </div>
+
+        <div class="drink menu-item" data-search="Tu Cariñito Leyenda Ron Añejo Pineapple Clarified Milk Serve cold over ice Signature">
+          <div class="drink-name">
+            <span>Tu Cariñito</span>
+            <span class="tag">Signature</span>
+          </div>
+          <ul>
+            <li>Leyenda, Ron Añejo, Pineapple, Clarified Milk</li>
+            <li>Serve cold over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Negroni Gin Campari Sweet Vermouth Orange slice stir built in glass">
+          <div class="drink-name"><span>Negroni</span></div>
+          <ul>
+            <li>1 oz Gin</li>
+            <li>1 oz Campari</li>
+            <li>1 oz Sweet Vermouth</li>
+            <li>Orange slice</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Paloma Tequila Mezcal Lime juice Grapefruit soda built in glass">
+          <div class="drink-name"><span>Paloma</span></div>
+          <ul>
+            <li>2 oz Tequila blanco or mezcal</li>
+            <li>1/2 oz Lime juice</li>
+            <li>4 oz Grapefruit soda</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Spanish Gin Tonic Gin Tonic water Lemon wheel Thyme Juniper berries garnish">
+          <div class="drink-name"><span>Spanish Gin Tonic</span></div>
+          <ul>
+            <li>2 oz Gin</li>
+            <li>4 oz Tonic water</li>
+            <li>Lemon wheel, thyme and juniper berries for garnish</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Pour n' Go -->
+      <section class="card span2 menu-section">
+        <div class="section-head">
+          <h2 class="section-title">Pour n’ Go</h2>
+          <p class="section-note">No mixing required</p>
+        </div>
+
+        <div class="columns">
+          <div class="listblock menu-item" data-search="Whisky Toki Suntory Japanese Old Forester Bourbon Jack Daniels Tennessee Honey sold out">
+            <h4>Whisky</h4>
+            <ul>
+              <li>Toki — Suntory Whisky (Japanese)</li>
+              <li>Old Forester — Bourbon Whisky</li>
+              <li>Jack Daniels Tennessee Honey (sold out)</li>
+            </ul>
+          </div>
+
+          <div class="listblock">
+            <div class="menu-item" data-search="Gin Roku Gin Japanese">
+              <h4>Gin</h4>
+              <ul>
+                <li>Roku Gin — Japanese</li>
+              </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="menu-item" data-search="Ron Rum Diamond Reserve Spiced Rum Barcelo Gran Añejo Dark Barceló Imperial Onyx">
+              <h4>Ron</h4>
+              <ul>
+                <li>Diamond Reserve — Spiced Rum</li>
+                <li>Barceló Gran Añejo Dark</li>
+                <li>Barceló Imperial Onyx</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shaky-Shaky -->
+      <section class="card span2 menu-section">
+        <div class="section-head">
+          <h2 class="section-title">Shaky-Shaky!!</h2>
+          <p class="section-note">Shaken</p>
+        </div>
+
+        <div class="drink menu-item" data-search="Peruvian Pisco Sour Pisco Lemon juice Lime juice Simple syrup Egg white shake Angostura bitters double-strain">
+          <div class="drink-name"><span>Peruvian Pisco Sour</span></div>
+          <ul>
+            <li>2 oz Pisco</li>
+            <li>1/2 oz Lemon juice</li>
+            <li>1/2 oz Lime juice</li>
+            <li>3/4 oz Simple syrup</li>
+            <li>1 Egg white</li>
+            <li>Add ingredients in a cocktail mixer and stir for 15–20 seconds without ice, then add ice and shake for 15–20 seconds, finally double-strain and serve</li>
+            <li>3 drops Angostura bitters for the finishing touch</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="Piña Colada Dominicana Malibu Pineapple juice Coconut cream shaken">
+          <div class="drink-name"><span>Piña Colada Dominicana</span></div>
+          <ul>
+            <li>1 oz Malibu</li>
+            <li>1.5 oz Pineapple juice</li>
+            <li>1/2 oz Coconut cream</li>
+          </ul>
+        </div>
+
+        <div class="drink menu-item" data-search="El George Scotch Sweet vermouth Benedictine Lemon peel">
+          <div class="drink-name"><span>El George</span></div>
+          <ul>
+            <li>2 oz Scotch</li>
+            <li>3/4 oz Sweet vermouth</li>
+            <li>1/2 oz Benedictine</li>
+            <li>Lemon peel (yellow)</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>Made with ♥ on GitLab Pages — cheers 🥂</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const searchInput = document.getElementById('search');
+      const clearBtn = document.getElementById('clearBtn');
+      const noResults = document.getElementById('noResults');
+
+      const items = Array.from(document.querySelectorAll('.menu-item'));
+      const sections = Array.from(document.querySelectorAll('.menu-section'));
+
+      function applyFilter() {
+        const q = (searchInput.value || '').trim().toLowerCase();
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          const hay = (item.getAttribute('data-search') || item.textContent || '').toLowerCase();
+          const show = q === '' ? true : hay.includes(q);
+          item.classList.toggle('hidden', !show);
+          if (show) visibleCount++;
+        });
+
+        sections.forEach(sec => {
+          const secItems = Array.from(sec.querySelectorAll('.menu-item'));
+          const anyVisible = secItems.some(i => !i.classList.contains('hidden'));
+          sec.classList.toggle('hidden', !anyVisible);
+        });
+
+        noResults.style.display = (q !== '' && visibleCount === 0) ? 'block' : 'none';
+      }
+
+      searchInput.addEventListener('input', applyFilter);
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        applyFilter();
+        searchInput.focus();
+      });
+
+      // Initial render
+      applyFilter();
+    })();
+  </script>
+</body>
+</html>
