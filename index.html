@@ -1,145 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>704 Cocktail Menu</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-        h1, h2, h3, h4 {
-            color: #444;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            margin: 5px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SavCam Cocktails - NYE 2025</title>
+
+  <!-- Fancy fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg0:#07060a;
+      --bg1:#0d0b14;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.08);
+      --stroke: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
+      --accent: rgba(255, 196, 98, 0.95); /* warm gold */
+      --accent2: rgba(163, 126, 255, 0.65); /* soft violet */
+    }
+
+    *{ box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.55;
+
+      /* Fancy lounge background */
+      background:
+        radial-gradient(1100px 700px at 20% 10%, rgba(255,196,98,0.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(163,126,255,0.10), transparent 55%),
+        radial-gradient(900px 700px at 60% 90%, rgba(76, 201, 240, 0.06), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 18px 72px;
+    }
+
+    header{
+      text-align:center;
+      padding: 18px 12px 28px;
+      margin-bottom: 26px;
+    }
+
+    .title{
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.02em;
+      font-weight: 700;
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      margin: 0 0 8px 0;
+    }
+
+    .subtitle{
+      margin: 0 auto;
+      max-width: 720px;
+      color: var(--muted);
+      font-weight: 400;
+      font-size: 0.98rem;
+    }
+
+    .chips{
+      margin-top: 18px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .chip{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .grid{
+      display:grid;
+      gap: 18px;
+    }
+    @media (min-width: 880px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+      .span2{ grid-column: 1 / -1; }
+    }
+
+    section.card{
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.03));
+      border: 1px solid var(--stroke);
+      border-radius: 18px;
+      padding: 18px 18px 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
+
+    .section-head{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap: 14px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .section-title{
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 1.55rem;
+      margin:0;
+    }
+    .section-note{
+      color: var(--muted2);
+      font-size: 0.85rem;
+      margin:0;
+      white-space:nowrap;
+    }
+
+    .drink{
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(255,255,255,0.12);
+    }
+    .drink:last-child{ border-bottom:none; }
+
+    .drink-name{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
+      margin:0 0 6px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .tag{
+      font-family: Inter, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(0,0,0,0.85);
+      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.8));
+      padding: 4px 10px;
+      border-radius: 999px;
+      box-shadow: 0 8px 20px rgba(255,196,98,0.10);
+      flex: 0 0 auto;
+    }
+
+    ul{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    li{ margin: 4px 0; }
+
+    .note{
+      color: var(--muted2);
+      font-size: 0.92rem;
+      margin: 6px 0 0 0;
+    }
+
+    .columns{
+      display:grid;
+      gap: 14px;
+    }
+    @media (min-width: 640px){
+      .columns{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .listblock{
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+    }
+    .listblock h4{
+      margin:0 0 8px 0;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.95);
+    }
+    .listblock ul{ margin:0; }
+
+    footer{
+      text-align:center;
+      margin-top: 22px;
+      color: var(--muted2);
+      font-size: 0.85rem;
+    }
+
+    .divider{
+      height: 1px;
+      margin: 18px 0 6px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    }
+  </style>
 </head>
+
 <body>
-    <h1>704 Cocktail Menu*</h1>
-    <p><em>*All measurements are posted in ounces (oz) for 1 drink, scale accordingly for multiple drinks</em></p>
+  <div class="wrap">
+    <header>
+      <h1 class="title">SavCam Cocktails — NYE 2025<span style="color:var(--accent)">*</span></h1>
+      <p class="subtitle">
+        All measurements are posted in ounces (oz) for <strong>1 drink</strong> — scale accordingly for multiple drinks.
+      </p>
+      <div class="chips">
+        <div class="chip">Stirred • Shaken • Pour n’ Go</div>
+        <div class="chip">Keep it cold • Serve with style</div>
+        <div class="chip">Tonight’s menu</div>
+      </div>
+    </header>
 
-    <h2>Wake up!!</h2>
-    <h4><em>Espresso Martini - Classic</em></h4>
-    <ul>
-        <li>2 oz Vodka</li>
-        <li>1/2 oz Coffee liqueur</li>
-        <li>1 oz Espresso</li>
-        <li>1/2 oz Simple syrup</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
-    <h4><em>Espresso Martini - Tequila</em></h4>
-    <ul>
-        <li>1.5 oz Tequila Blanco</li>
-        <li>1 oz Coffee Liqueur</li>
-        <li>1/2 oz Licor 43</li>
-        <li>2 oz Espresso</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
-    <h4><em>Espresso Martini - Decadent</em></h4>
-    <ul>
-        <li>1.5 oz Baileys Chocolate Liqueur</li>
-        <li>0.75 oz Vodka</li>
-        <li>1 oz Fresh Espresso</li>
-        <li>0.25 oz Simple Syrup</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
-    <h4><em>Carajillo</em></h4>
-    <ul>
-        <li>1.5 oz Licor 43</li>
-        <li>1.5 oz Fresh Espresso</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
+    <div class="grid">
 
-    <h2>Fancy a drink?</h2>
-    <h4><em>Negroni</em></h4>
-    <ul>
-        <li>1 oz Gin</li>
-        <li>1 oz Campari</li>
-        <li>1 oz Sweet Vermouth</li>
-        <li>Orange slice</li>
-        <li>Add ingredients directly in glass, stir gently for 5-10 seconds over ice</li>
-    </ul>
-    <h4><em>Mojito</em></h4>
-    <ul>
-        <li>5 mint leaves</li>
-        <li>1.5 oz white rum</li>
-        <li>3/4 oz lime juice</li>
-        <li>3/4 oz simple syrup</li>
-        <li>1.5 oz club soda</li>
-        <li>Add ingredients directly in glass, stir gently for 5-10 seconds over ice</li>
-    </ul>
-    <h4><em>Paloma</em></h4>
-    <ul>
-        <li>2 oz tequila blanco or mezcal</li>
-        <li>1/2 oz lime juice</li>
-        <li>4 oz grapefruit soda</li>
-        <li>Add ingredients directly in glass, stir gently for 5-10 seconds over ice</li>
-    </ul>
-    <h4><em>Spanish Gin Tonic</em></h4>
-    <ul>
-        <li>2 oz gin</li>
-        <li>4 oz tonic water</li>
-        <li>Lemon wheel, Thyme and Juniper berries for garnish</li>
-        <li>Add ingredients directly in glass, stir gently for 5-10 seconds over ice</li>
-    </ul>
+      <!-- Welcome Drink -->
+      <section class="card">
+        <div class="section-head">
+          <h2 class="section-title">Welcome Drink</h2>
+          <p class="section-note">Start here</p>
+        </div>
 
-    <h2>Shaky-Shaky!!</h2>
-    <h4><em>Extra-dirty Dry Martini</em></h4>
-    <ul>
-        <li>2 oz Gin (Bombay)</li>
-        <li>1/4 oz Vermouth</li>
-        <li>1 oz olive brine</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
-    <h4><em>Classical Martini</em></h4>
-    <ul>
-        <li>2.5 oz Gin</li>
-        <li>1/2 oz Vermouth</li>
-        <li>1 oz olive brine</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-    </ul>
-    <h4><em>Peruvian Pisco Sour</em></h4>
-    <ul>
-        <li>2 oz Pisco</li>
-        <li>1/2 oz lemon juice</li>
-        <li>1/2 oz lime juice</li>
-        <li>3/4 oz simple syrup</li>
-        <li>1 egg white</li>
-        <li>Add ingredients in a cocktail mixer and stir for 15-20 seconds without ice, then add ice and shake for 15-20 seconds, finally double-strain and serve</li>
-        <li>3 drops angostura bitters for the finishing touch</li>
-    </ul>
-    <h4><em>Margarita</em></h4>
-    <ul>
-        <li>1.5 oz tequila blanco or mezcal</li>
-        <li>1 oz Cointreau</li>
-        <li>3/4 oz lime juice</li>
-        <li>1/2 oz simple syrup (optional)</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, serve in glass with ice</li>
-    </ul>
-    <h4><em>Pina Colada Malibu</em></h4>
-    <ul>
-        <li>1 oz Malibu</li>
-        <li>1.5 oz pineapple juice</li>
-        <li>1/2 oz coconut cream</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, serve in glass with ice</li>
-    </ul>
-    <h4><em>El George</em></h4>
-    <ul>
-        <li>2 oz Scotch</li>
-        <li>3/4 oz sweet vermouth</li>
-        <li>1/2 oz Benedictine</li>
-        <li>Add ingredients in a cocktail mixer over ice and stir for 15-20 seconds, double-strain and serve</li>
-        <li>Lemon peel (yellow)</li>
-    </ul>
+        <div class="drink">
+          <div class="drink-name">
+            <span>Piña Colada Dominicana</span>
+            <span class="tag">House</span>
+          </div>
+          <p class="note">Al ojo porciento y queda bien.</p>
+        </div>
+      </section>
+
+      <!-- Wake up -->
+      <section class="card">
+        <div class="section-head">
+          <h2 class="section-title">Wake up!!</h2>
+          <p class="section-note">Coffee forward</p>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Espresso Martini — Classic</span></div>
+          <ul>
+            <li>2 oz Vodka</li>
+            <li>1/2 oz Coffee liqueur</li>
+            <li>1 oz Espresso</li>
+            <li>1/2 oz Simple syrup</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Espresso Martini — Decadent</span></div>
+          <ul>
+            <li>1.5 oz Baileys Chocolate Liqueur</li>
+            <li>0.75 oz Vodka</li>
+            <li>1 oz Fresh Espresso</li>
+            <li>0.25 oz Simple Syrup</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Carajillo</span></div>
+          <ul>
+            <li>1.5 oz Licor 43</li>
+            <li>1.5 oz Fresh Espresso</li>
+            <li>Add ingredients in a cocktail mixer over ice and stir for 15–20 seconds, double-strain and serve</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Fancy a drink -->
+      <section class="card span2">
+        <div class="section-head">
+          <h2 class="section-title">Fancy a drink?</h2>
+          <p class="section-note">Built in glass</p>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name">
+            <span>Tu Cariñito</span>
+            <span class="tag">Signature</span>
+          </div>
+          <ul>
+            <li>Leyenda, Ron Añejo, Pineapple, Clarified Milk</li>
+            <li>Serve cold over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Negroni</span></div>
+          <ul>
+            <li>1 oz Gin</li>
+            <li>1 oz Campari</li>
+            <li>1 oz Sweet Vermouth</li>
+            <li>Orange slice</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Paloma</span></div>
+          <ul>
+            <li>2 oz Tequila blanco or mezcal</li>
+            <li>1/2 oz Lime juice</li>
+            <li>4 oz Grapefruit soda</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Spanish Gin Tonic</span></div>
+          <ul>
+            <li>2 oz Gin</li>
+            <li>4 oz Tonic water</li>
+            <li>Lemon wheel, thyme and juniper berries for garnish</li>
+            <li>Add ingredients directly in glass, stir gently for 5–10 seconds over ice</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Pour n' Go -->
+      <section class="card span2">
+        <div class="section-head">
+          <h2 class="section-title">Pour n’ Go</h2>
+          <p class="section-note">No mixing required</p>
+        </div>
+
+        <div class="columns">
+          <div class="listblock">
+            <h4>Whisky</h4>
+            <ul>
+              <li>Toki — Suntory Whisky (Japanese)</li>
+              <li>Old Forester — Bourbon Whisky</li>
+              <li>Jack Daniels Tennessee Honey (sold out)</li>
+            </ul>
+          </div>
+
+          <div class="listblock">
+            <h4>Gin</h4>
+            <ul>
+              <li>Roku Gin — Japanese</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <h4>Ron</h4>
+            <ul>
+              <li>Diamond Reserve — Spiced Rum</li>
+              <li>Barceló Gran Añejo Dark</li>
+              <li>Barceló Imperial Onyx</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shaky-Shaky -->
+      <section class="card span2">
+        <div class="section-head">
+          <h2 class="section-title">Shaky-Shaky!!</h2>
+          <p class="section-note">Shaken</p>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Peruvian Pisco Sour</span></div>
+          <ul>
+            <li>2 oz Pisco</li>
+            <li>1/2 oz Lemon juice</li>
+            <li>1/2 oz Lime juice</li>
+            <li>3/4 oz Simple syrup</li>
+            <li>1 Egg white</li>
+            <li>Add ingredients in a cocktail mixer and stir for 15–20 seconds without ice, then add ice and shake for 15–20 seconds, finally double-strain and serve</li>
+            <li>3 drops Angostura bitters for the finishing touch</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>Piña Colada Dominicana</span></div>
+          <ul>
+            <li>1 oz Malibu</li>
+            <li>1.5 oz Pineapple juice</li>
+            <li>1/2 oz Coconut cream</li>
+          </ul>
+        </div>
+
+        <div class="drink">
+          <div class="drink-name"><span>El George</span></div>
+          <ul>
+            <li>2 oz Scotch</li>
+            <li>3/4 oz Sweet vermouth</li>
+            <li>1/2 oz Benedictine</li>
+            <li>Lemon peel (yellow)</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>Made with ♥ on GitLab Pages — cheers 🥂</p>
+    </footer>
+  </div>
 </body>
 </html>
