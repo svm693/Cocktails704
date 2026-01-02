@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SVC Cocktails - NYE 2025</title>
-
+  <title>SV Cocktails</title>
 
   <!-- Fancy fonts (safe to fail; page still renders) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -199,17 +198,6 @@
       color: rgba(255,255,255,0.95);
     }
 
-    .tag{
-      font-family: Inter, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: rgba(0,0,0,0.86);
-      background: linear-gradient(90deg, var(--accent), rgba(255,255,255,0.85));
-      padding: 4px 10px;
-      border-radius: 999px;
-      flex: 0 0 auto;
-    }
-
     ul{
       margin: 0;
       padding-left: 18px;
@@ -276,7 +264,7 @@
 <body>
   <div class="wrap">
     <header>
-      <h1 class="title">SVC Cocktails — NYE 2025<span style="color:var(--accent)">*</span></h1>
+      <h1 class="title">SV Cocktails<span style="color:var(--accent)">*</span></h1>
       <p class="subtitle">
         All measurements are posted in ounces (oz) for <strong>1 drink</strong> — scale accordingly for multiple drinks.
       </p>
@@ -302,22 +290,6 @@
     </header>
 
     <div class="grid" id="menuGrid">
-
-      <!-- Welcome Drink -->
-      <section class="card menu-section">
-        <div class="section-head">
-          <h2 class="section-title">Welcome Drink</h2>
-          <p class="section-note">Start here</p>
-        </div>
-
-        <div class="drink menu-item" data-search="Pina Colada Dominicana Piña Colada Dominicana welcome drink al ojo porciento">
-          <div class="drink-name">
-            <span>Piña Colada Dominicana</span>
-            <span class="tag">House</span>
-          </div>
-          <p class="note">Al ojo porciento y queda bien.</p>
-        </div>
-      </section>
 
       <!-- Wake up -->
       <section class="card menu-section">
@@ -365,17 +337,6 @@
           <p class="section-note">Built in glass</p>
         </div>
 
-        <div class="drink menu-item" data-search="Tu Cariñito Leyenda Ron Añejo Pineapple Clarified Milk Serve cold over ice Signature">
-          <div class="drink-name">
-            <span>Tu Cariñito</span>
-            <span class="tag">Signature</span>
-          </div>
-          <ul>
-            <li>Leyenda, Ron Añejo, Pineapple, Clarified Milk</li>
-            <li>Serve cold over ice</li>
-          </ul>
-        </div>
-
         <div class="drink menu-item" data-search="Negroni Gin Campari Sweet Vermouth Orange slice stir built in glass">
           <div class="drink-name"><span>Negroni</span></div>
           <ul>
@@ -421,7 +382,6 @@
             <ul>
               <li>Toki — Suntory Whisky (Japanese)</li>
               <li>Old Forester — Bourbon Whisky</li>
-              <li>Jack Daniels Tennessee Honey (sold out)</li>
             </ul>
           </div>
 
@@ -480,9 +440,6 @@
 
     </div>
 
-    <footer>
-      <p>Made with ♥ on GitLab Pages — cheers 🥂</p>
-    </footer>
   </div>
 
   <script>
