@@ -170,7 +170,7 @@
     .section-title{
       font-family: "Cormorant Garamond", serif;
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: clamp(1.72rem, 4.8vw, 1.92rem);
       margin:0;
     }
     .section-note{
@@ -236,6 +236,24 @@
       height: 1px;
       margin: 16px 0 10px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+    }
+
+
+    @media (max-width: 680px){
+      .wrap{
+        padding: 18px 12px 46px;
+      }
+      .grid{
+        margin-top: 14px;
+        gap: 12px;
+      }
+      section.card{
+        padding: 14px 14px 10px;
+      }
+      .section-head{
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
     }
 
     .hidden{ display:none !important; }
@@ -439,6 +457,9 @@
       </section>
 
     </div>
+
+    <footer>Event date · April 2026</footer>
+
 
   </div>
 
